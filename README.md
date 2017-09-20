@@ -1,6 +1,8 @@
 # valueobject
 Value Objects and Enums
 
+[![Build Status](https://travis-ci.org/yomy/valueobject.svg?branch=master)](https://travis-ci.org/yomy/valueobject)
+
 ## Installation and documentation
 
 - Available as [Composer] package [yomy/valueobject].
