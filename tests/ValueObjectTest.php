@@ -153,4 +153,45 @@ class ValueObjectTest extends \PHPUnit_Framework_TestCase {
         $this->assertNotSame($object1, $object2);
     }
 
+    /**
+     * Tests access to non-existing property fails
+     *
+     * @expectedException \BadFunctionCallException
+     */
+    public function testPropertyAccess0() {
+        $object = ValueObject::instance(1);
+        $object->property;
+    }
+
+    /**
+     * Tests setting a non-existing property fails
+     *
+     * @expectedException \BadFunctionCallException
+     */
+    public function testPropertyAccess() {
+        $object = ValueObject::instance(1);
+        $object->property = 1;
+    }
+
+    /**
+     * Tests if isset fails
+     *
+     * @expectedException \BadFunctionCallException
+     */
+    public function testPropertyAccess2() {
+        $object = ValueObject::instance(1);
+        isset($object->property);
+    }
+
+    /**
+     * Tests if cloning fails
+     *
+     * @expectedException \BadFunctionCallException
+     */
+    public function testPropertyAccess3() {
+        $object = ValueObject::instance(1);
+        clone $object;
+    }
+
+
 }
