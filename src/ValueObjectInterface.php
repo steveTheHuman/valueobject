@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2017 Milos Jovanovic <email.yomy@gmail.com>
+ * Copyright 2018 Milos Jovanovic <email.yomy@gmail.com>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -27,7 +27,7 @@ interface ValueObjectInterface {
      * @param mixed $value
      * @return ValueObjectInterface
      */
-    public static function instance($value);
+    public static function instance($value): ValueObjectInterface;
 
     /**
      * Gets the value of the object

@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2017 Milos Jovanovic <email.yomy@gmail.com>
+ * Copyright 2018 Milos Jovanovic <email.yomy@gmail.com>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -18,14 +18,14 @@ use YomY\ValueObject\ValueObjectInterface;
 
 require_once 'helper/ValueObjectExample.php';
 
-class ValueObjectTest extends \PHPUnit_Framework_TestCase {
+class ValueObjectTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * Provides valid values for a value object
      *
      * @return array
      */
-    public static function ValueProvider() {
+    public static function ValueProvider(): array {
         return [
             [1],
             ['1'],
@@ -43,7 +43,7 @@ class ValueObjectTest extends \PHPUnit_Framework_TestCase {
      *
      * @return array
      */
-    public static function InvalidValueProvider() {
+    public static function InvalidValueProvider(): array {
         return [
             [[]],
             [[1]],
@@ -57,7 +57,7 @@ class ValueObjectTest extends \PHPUnit_Framework_TestCase {
      *
      * @return array
      */
-    public static function DifferenceValueProvider() {
+    public static function DifferenceValueProvider(): array {
         return [
             [1, '1'],
             [true, 1],
@@ -81,7 +81,6 @@ class ValueObjectTest extends \PHPUnit_Framework_TestCase {
      */
     public function testValueObjectInstance($value) {
         $object = ValueObject::instance($value);
-        $this->assertInstanceOf(ValueObjectInterface::class, $object);
         $this->assertEquals($value, $object->getValue());
     }
 
@@ -104,7 +103,6 @@ class ValueObjectTest extends \PHPUnit_Framework_TestCase {
      */
     public function testValueObjectExtendedInstance($value) {
         $object = ValueObjectExample::instance($value);
-        $this->assertInstanceOf(ValueObjectInterface::class, $object);
         $this->assertEquals($value, $object->getValue());
     }
 

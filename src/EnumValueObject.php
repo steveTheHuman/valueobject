@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2017 Milos Jovanovic <email.yomy@gmail.com>
+ * Copyright 2018 Milos Jovanovic <email.yomy@gmail.com>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -28,7 +28,7 @@ abstract class EnumValueObject extends ValueObject {
     /**
      * @return array
      */
-    public static function getAvailableValues() {
+    public static function getAvailableValues(): array {
         $class = static::class;
         if (!isset(static::$availableValues[$class])) {
             try {
@@ -53,7 +53,7 @@ abstract class EnumValueObject extends ValueObject {
      * @param mixed $value
      * @return bool
      */
-    public static function isValid($value) {
+    public static function isValid($value): bool {
         $key = static::getKey($value);
         return $key !== false;
     }
@@ -78,9 +78,9 @@ abstract class EnumValueObject extends ValueObject {
      * @return ValueObjectInterface
      * @throws \InvalidArgumentException
      */
-    public static function __callStatic($name, $arguments) {
+    public static function __callStatic(string $name, array $arguments) {
         $availableValues = static::getAvailableValues();
-        $value = isset($availableValues[$name]) ? $availableValues[$name] : null;
+        $value = $availableValues[$name] ?? null;
         return static::instance($value);
     }
 

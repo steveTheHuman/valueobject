@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2017 Milos Jovanovic <email.yomy@gmail.com>
+ * Copyright 2018 Milos Jovanovic <email.yomy@gmail.com>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,12 +13,10 @@
  */
 namespace YomY\ValueObject\Tests;
 
-use YomY\ValueObject\ValueObjectInterface;
-
 require_once 'helper/EnumValueObjectExample.php';
 require_once 'helper/EnumValueObjectExample2.php';
 
-class EnumValueObjectTest extends \PHPUnit_Framework_TestCase {
+class EnumValueObjectTest extends \PHPUnit\Framework\TestCase {
 
     /**
      * Provides valid values for a specific enum value object
@@ -42,7 +40,6 @@ class EnumValueObjectTest extends \PHPUnit_Framework_TestCase {
      */
     public function testEnumValueObjectInstance($value) {
         $object = EnumValueObjectExample::instance($value);
-        $this->assertInstanceOf(ValueObjectInterface::class, $object);
         $this->assertEquals($value, $object->getValue());
     }
 
@@ -85,6 +82,8 @@ class EnumValueObjectTest extends \PHPUnit_Framework_TestCase {
 
     /**
      * Test getAvailableValues method
+     *
+     * @throws \ReflectionException
      */
     public function testGetAvailableValues() {
         $class = EnumValueObjectExample::class;

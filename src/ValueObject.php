@@ -1,6 +1,6 @@
 <?php
 /**
- * Copyright 2017 Milos Jovanovic <email.yomy@gmail.com>
+ * Copyright 2018 Milos Jovanovic <email.yomy@gmail.com>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -42,7 +42,7 @@ class ValueObject implements ValueObjectInterface {
      * @return ValueObjectInterface
      * @throws \InvalidArgumentException
      */
-    public static function instance($value) {
+    public static function instance($value): ValueObjectInterface {
         static::validateValue($value);
         return static::makeInstance(static::class, $value);
     }
@@ -66,7 +66,7 @@ class ValueObject implements ValueObjectInterface {
      * @param mixed $value
      * @return string
      */
-    private static function getStorageKey($class, $value) {
+    private static function getStorageKey(string $class, $value): string {
         return $class . '|' . \gettype($value)[0] . '|' . $value;
     }
 
@@ -76,7 +76,7 @@ class ValueObject implements ValueObjectInterface {
      * @return ValueObjectInterface
      * @throws \InvalidArgumentException
      */
-    protected static function makeInstance($class, $value) {
+    protected static function makeInstance(string $class, $value): ValueObjectInterface {
         $storageKey = static::getStorageKey($class, $value);
         if (!isset(static::$instances[$storageKey])) {
             static::$instances[$storageKey] = new $class($value);
@@ -94,7 +94,7 @@ class ValueObject implements ValueObjectInterface {
     /**
      * @return string
      */
-    public function __toString() {
+    public function __toString(): string {
         return (string)$this->getValue();
     }
 
