@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Copyright 2018 Milos Jovanovic <email.yomy@gmail.com>
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +15,6 @@
 namespace YomY\ValueObject\Tests;
 
 use YomY\ValueObject\ValueObject;
-use YomY\ValueObject\ValueObjectInterface;
 
 require_once 'helper/ValueObjectExample.php';
 
@@ -68,6 +68,7 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
             [false, '0'],
             [false, 'false'],
             [null, '0'],
+            [null, 'null'],
             [null, ''],
             [null, false],
         ];

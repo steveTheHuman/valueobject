@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  * Copyright 2018 Milos Jovanovic <email.yomy@gmail.com>
  * Licensed under the Apache License, Version 2.0 (the "License");
