@@ -34,7 +34,11 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
             [false],
             [null],
             ['0'],
-            ['']
+            [''],
+            [\PHP_INT_MAX],
+            [\PHP_INT_MIN],
+            [(string)\PHP_INT_MAX],
+            [(string)\PHP_INT_MIN]
         ];
     }
 
@@ -80,7 +84,7 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
      * @dataProvider ValueProvider
      * @param mixed $value
      */
-    public function testValueObjectInstance($value) {
+    public function testInstance($value) {
         $object = ValueObject::instance($value);
         $this->assertEquals($value, $object->getValue());
     }
@@ -92,7 +96,7 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
      * @expectedException \InvalidArgumentException
      * @param mixed $value
      */
-    public function testValueObjectInstanceInvalidValue($value) {
+    public function testInstanceInvalidValue($value) {
         ValueObject::instance($value);
     }
 
@@ -102,7 +106,7 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
      * @dataProvider ValueProvider
      * @param mixed $value
      */
-    public function testValueObjectExtendedInstance($value) {
+    public function testExtendedInstance($value) {
         $object = ValueObjectExample::instance($value);
         $this->assertEquals($value, $object->getValue());
     }
@@ -114,7 +118,7 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
      * @expectedException \InvalidArgumentException
      * @param mixed $value
      */
-    public function testValueObjectExtendedInstanceInvalidValue($value) {
+    public function testExtendedInstanceInvalidValue($value) {
         ValueObjectExample::instance($value);
     }
 
@@ -157,7 +161,7 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
      *
      * @expectedException \BadFunctionCallException
      */
-    public function testPropertyAccess0() {
+    public function testPropertyAccessFail() {
         $object = ValueObject::instance(1);
         $object->property;
     }
@@ -167,7 +171,7 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
      *
      * @expectedException \BadFunctionCallException
      */
-    public function testPropertyAccess() {
+    public function testPropertySetFail() {
         $object = ValueObject::instance(1);
         $object->property = 1;
     }
@@ -177,7 +181,7 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
      *
      * @expectedException \BadFunctionCallException
      */
-    public function testPropertyAccess2() {
+    public function testPropertyIssetFail() {
         $object = ValueObject::instance(1);
         isset($object->property);
     }
@@ -187,7 +191,7 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
      *
      * @expectedException \BadFunctionCallException
      */
-    public function testPropertyAccess3() {
+    public function testCloneFail() {
         $object = ValueObject::instance(1);
         clone $object;
     }

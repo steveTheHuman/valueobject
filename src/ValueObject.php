@@ -75,7 +75,6 @@ class ValueObject implements ValueObjectInterface {
      * @param string $class
      * @param mixed $value
      * @return ValueObjectInterface
-     * @throws \InvalidArgumentException
      */
     protected static function makeInstance(string $class, $value): ValueObjectInterface {
         $storageKey = static::getStorageKey($class, $value);

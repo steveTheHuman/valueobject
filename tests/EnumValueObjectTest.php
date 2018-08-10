@@ -24,7 +24,7 @@ class EnumValueObjectTest extends \PHPUnit\Framework\TestCase {
      *
      * @return array
      */
-    public static function ValueProvider() {
+    public static function ValueProvider(): array {
         return [
             [EnumValueObjectExample::ENUM1],
             [EnumValueObjectExample::ENUM2],
@@ -39,7 +39,7 @@ class EnumValueObjectTest extends \PHPUnit\Framework\TestCase {
      * @dataProvider ValueProvider
      * @param mixed $value
      */
-    public function testEnumValueObjectInstance($value) {
+    public function testInstance($value) {
         $object = EnumValueObjectExample::instance($value);
         $this->assertEquals($value, $object->getValue());
     }
@@ -49,14 +49,14 @@ class EnumValueObjectTest extends \PHPUnit\Framework\TestCase {
      *
      * @expectedException \InvalidArgumentException
      */
-    public function testEnumValueObjectInstanceInvalidValue() {
+    public function testInvalidValue() {
         EnumValueObjectExample::instance('invalidValue');
     }
 
     /**
      * Test instantiating an object with a magic method (by constant name) gives the same object as instance method
      */
-    public function testEnumValueObjectInstanceMagicMethod() {
+    public function testMagicMethod() {
         $object1 = EnumValueObjectExample::instance(EnumValueObjectExample::ENUM3);
         $object2 = EnumValueObjectExample::ENUM3();
         $this->assertSame($object1, $object2);
