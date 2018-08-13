@@ -17,6 +17,8 @@ namespace YomY\ValueObject\Tests;
 use YomY\ValueObject\ValueObject;
 
 require_once 'helper/ValueObjectExample.php';
+require_once 'helper/ValueObjectExampleLevel2.php';
+require_once 'helper/ValueObjectExampleLevel3.php';
 
 class ValueObjectTest extends \PHPUnit\Framework\TestCase {
 
@@ -153,6 +155,33 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
     public function testCompareObjectsNotSameDifferentClass() {
         $object1 = ValueObject::instance(1);
         $object2 = ValueObjectExample::instance(1);
+        $this->assertNotSame($object1, $object2);
+    }
+
+    /**
+     * Test if instances of different classes with the same value are not the same objects (level 2 class)
+     */
+    public function testCompareObjectsNotSameDifferentClassLevel2() {
+        $object1 = ValueObject::instance(1);
+        $object2 = ValueObjectExampleLevel2::instance(1);
+        $this->assertNotSame($object1, $object2);
+    }
+
+    /**
+     * Test if instances of different classes with the same value are not the same objects (level 3 class)
+     */
+    public function testCompareObjectsNotSameDifferentClassLevel3() {
+        $object1 = ValueObject::instance(1);
+        $object2 = ValueObjectExampleLevel3::instance(1);
+        $this->assertNotSame($object1, $object2);
+    }
+
+    /**
+     * Test if instances of different classes with the same value are not the same objects (deep level classes)
+     */
+    public function testCompareObjectsNotSameDifferentClassDeepLevelClasses() {
+        $object1 = ValueObjectExampleLevel2::instance(1);
+        $object2 = ValueObjectExampleLevel3::instance(1);
         $this->assertNotSame($object1, $object2);
     }
 
