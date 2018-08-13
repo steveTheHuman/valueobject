@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 /**
  * Copyright 2018 Milos Jovanovic <email.yomy@gmail.com>
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,6 +11,8 @@ declare(strict_types=1);
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+declare(strict_types=1);
+
 namespace YomY\ValueObject\Tests;
 
 use YomY\ValueObject\PositiveIntValueObject;
