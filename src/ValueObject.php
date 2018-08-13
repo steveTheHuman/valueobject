@@ -35,7 +35,7 @@ class ValueObject implements ValueObjectInterface {
     /**
      * @param mixed $value
      */
-    protected function __construct($value) {
+    private function __construct($value) {
         $this->value = $value;
     }
 
