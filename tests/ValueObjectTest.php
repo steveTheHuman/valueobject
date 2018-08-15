@@ -66,9 +66,14 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
      */
     public static function DifferenceValueProvider(): array {
         return [
+            [0, '0'],
+            [0, ''],
             [1, '1'],
+            [-1, '-1'],
             [true, 1],
+            [true, -1],
             [true, '1'],
+            [true, '-1'],
             [true, 'true'],
             [false, ''],
             [false, 0],
