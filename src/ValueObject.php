@@ -33,10 +33,16 @@ class ValueObject implements ValueObjectInterface {
     private $value;
 
     /**
+     * @var string
+     */
+    private $valueType;
+
+    /**
      * @param mixed $value
      */
     private function __construct($value) {
         $this->value = $value;
+        $this->valueType = \gettype($value)[0];
     }
 
     /**

@@ -89,7 +89,7 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
      */
     public function testInstance($value) {
         $object = ValueObject::instance($value);
-        $this->assertEquals($value, $object->getValue());
+        self::assertEquals($value, $object->getValue());
     }
 
     /**
@@ -111,7 +111,7 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
      */
     public function testExtendedInstance($value) {
         $object = ValueObjectExample::instance($value);
-        $this->assertEquals($value, $object->getValue());
+        self::assertEquals($value, $object->getValue());
     }
 
     /**
@@ -134,7 +134,7 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
     public function testCompareObjectsSame($value) {
         $object1 = ValueObject::instance($value);
         $object2 = ValueObject::instance($value);
-        $this->assertSame($object1, $object2);
+        self::assertSame($object1, $object2);
     }
 
     /**
@@ -147,7 +147,8 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
     public function testCompareObjectsNotSame($value1, $value2) {
         $object1 = ValueObject::instance($value1);
         $object2 = ValueObject::instance($value2);
-        $this->assertNotSame($object1, $object2);
+        self::assertNotSame($object1, $object2);
+        self::assertNotEquals($object1, $object2);
     }
 
     /**
@@ -156,7 +157,23 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
     public function testCompareObjectsNotSameDifferentClass() {
         $object1 = ValueObject::instance(1);
         $object2 = ValueObjectExample::instance(1);
-        $this->assertNotSame($object1, $object2);
+        self::assertNotSame($object1, $object2);
+        self::assertNotEquals($object1, $object2);
+    }
+
+
+    /**
+     * Test if instances of same extended class with the same value are not the same objects
+     *
+     * @dataProvider DifferenceValueProvider
+     * @param mixed $value1
+     * @param mixed $value2
+     */
+    public function testCompareObjectsNotSameExtendedClass($value1, $value2) {
+        $object1 = ValueObjectExample::instance($value1);
+        $object2 = ValueObjectExample::instance($value2);
+        self::assertNotSame($object1, $object2);
+        self::assertNotEquals($object1, $object2);
     }
 
     /**
@@ -165,7 +182,8 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
     public function testCompareObjectsNotSameDifferentClassLevel2() {
         $object1 = ValueObject::instance(1);
         $object2 = ValueObjectExampleLevel2::instance(1);
-        $this->assertNotSame($object1, $object2);
+        self::assertNotSame($object1, $object2);
+        self::assertNotEquals($object1, $object2);
     }
 
     /**
@@ -174,7 +192,8 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
     public function testCompareObjectsNotSameDifferentClassLevel3() {
         $object1 = ValueObject::instance(1);
         $object2 = ValueObjectExampleLevel3::instance(1);
-        $this->assertNotSame($object1, $object2);
+        self::assertNotSame($object1, $object2);
+        self::assertNotEquals($object1, $object2);
     }
 
     /**
@@ -183,7 +202,8 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
     public function testCompareObjectsNotSameDifferentClassDeepLevelClasses() {
         $object1 = ValueObjectExampleLevel2::instance(1);
         $object2 = ValueObjectExampleLevel3::instance(1);
-        $this->assertNotSame($object1, $object2);
+        self::assertNotSame($object1, $object2);
+        self::assertNotEquals($object1, $object2);
     }
 
     /**

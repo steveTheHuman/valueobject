@@ -42,7 +42,7 @@ class EnumValueObjectTest extends \PHPUnit\Framework\TestCase {
      */
     public function testInstance($value) {
         $object = EnumValueObjectExample::instance($value);
-        $this->assertEquals($value, $object->getValue());
+        self::assertEquals($value, $object->getValue());
     }
 
     /**
@@ -60,7 +60,7 @@ class EnumValueObjectTest extends \PHPUnit\Framework\TestCase {
     public function testMagicMethod() {
         $object1 = EnumValueObjectExample::instance(EnumValueObjectExample::ENUM3);
         $object2 = EnumValueObjectExample::ENUM3();
-        $this->assertSame($object1, $object2);
+        self::assertSame($object1, $object2);
     }
 
     /**
@@ -71,7 +71,7 @@ class EnumValueObjectTest extends \PHPUnit\Framework\TestCase {
      */
     public function testKeyValid($value) {
         $valid = EnumValueObjectExample::isValid($value);
-        $this->assertTrue($valid);
+        self::assertTrue($valid);
     }
 
     /**
@@ -79,7 +79,7 @@ class EnumValueObjectTest extends \PHPUnit\Framework\TestCase {
      */
     public function testKeyInvalid() {
         $valid = EnumValueObjectExample::isValid('InvalidValue');
-        $this->assertFalse($valid);
+        self::assertFalse($valid);
     }
 
     /**
@@ -92,7 +92,7 @@ class EnumValueObjectTest extends \PHPUnit\Framework\TestCase {
         $reflection = new \ReflectionClass($class);
         $expectedValues = $reflection->getConstants();
         $values = EnumValueObjectExample::getAvailableValues();
-        $this->assertEquals($expectedValues, $values);
+        self::assertEquals($expectedValues, $values);
     }
 
 }

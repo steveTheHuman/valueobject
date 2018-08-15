@@ -76,7 +76,7 @@ class PositiveIntValueObjectTest extends \PHPUnit\Framework\TestCase {
      */
     public function testInstance($value) {
         $object = PositiveIntValueObject::instance($value);
-        $this->assertEquals($value, $object->getValue());
+        self::assertEquals($value, $object->getValue());
     }
 
     /**
@@ -109,7 +109,8 @@ class PositiveIntValueObjectTest extends \PHPUnit\Framework\TestCase {
     public function testCompareObjectsNotSameDifferentClass() {
         $object1 = PositiveIntValueObject::instance(1);
         $object2 = PositiveIntValueObjectExample::instance(1);
-        $this->assertNotSame($object1, $object2);
+        self::assertNotSame($object1, $object2);
+        self::assertNotEquals($object1, $object2);
     }
 
     /**
@@ -120,7 +121,7 @@ class PositiveIntValueObjectTest extends \PHPUnit\Framework\TestCase {
      */
     public function testAlwaysInt($value) {
         $object = PositiveIntValueObject::instance($value);
-        $this->assertSame((int)$value, $object->getValue());
+        self::assertSame((int)$value, $object->getValue());
     }
 
 }
