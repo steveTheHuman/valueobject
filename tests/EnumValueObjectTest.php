@@ -15,10 +15,23 @@ declare(strict_types=1);
 
 namespace YomY\ValueObject\Tests;
 
+use YomY\ValueObject\ValueObject;
+
 require_once 'helper/EnumValueObjectExample.php';
 require_once 'helper/EnumValueObjectExample2.php';
 
 class EnumValueObjectTest extends \PHPUnit\Framework\TestCase {
+
+    /**
+     * @throws \ReflectionException
+     */
+    public function setUp() {
+        $valueObject = ValueObject::instance(null);
+        $reflection = new \ReflectionClass($valueObject);
+        $instancesProperty = $reflection->getProperty('instances');
+        $instancesProperty->setAccessible(true);
+        $instancesProperty->setValue(null, null);
+    }
 
     /**
      * Provides valid values for a specific enum value object

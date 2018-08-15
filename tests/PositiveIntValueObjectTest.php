@@ -16,10 +16,22 @@ declare(strict_types=1);
 namespace YomY\ValueObject\Tests;
 
 use YomY\ValueObject\PositiveIntValueObject;
+use YomY\ValueObject\ValueObject;
 
 require_once 'helper/PositiveIntValueObjectExample.php';
 
 class PositiveIntValueObjectTest extends \PHPUnit\Framework\TestCase {
+
+    /**
+     * @throws \ReflectionException
+     */
+    public function setUp() {
+        $valueObject = ValueObject::instance(null);
+        $reflection = new \ReflectionClass($valueObject);
+        $instancesProperty = $reflection->getProperty('instances');
+        $instancesProperty->setAccessible(true);
+        $instancesProperty->setValue(null, null);
+    }
 
     /**
      * Provides valid values for a positive int value object

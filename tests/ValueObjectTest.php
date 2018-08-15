@@ -24,6 +24,17 @@ require_once 'helper/ValueObjectExampleLevel3.php';
 class ValueObjectTest extends \PHPUnit\Framework\TestCase {
 
     /**
+     * @throws \ReflectionException
+     */
+    public function setUp() {
+        $valueObject = ValueObject::instance(null);
+        $reflection = new \ReflectionClass($valueObject);
+        $instancesProperty = $reflection->getProperty('instances');
+        $instancesProperty->setAccessible(true);
+        $instancesProperty->setValue(null, null);
+    }
+
+    /**
      * Provides valid values for a value object
      *
      * @return array
