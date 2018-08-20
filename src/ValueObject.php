@@ -94,7 +94,7 @@ class ValueObject implements ValueObjectInterface {
     /**
      * @return mixed
      */
-    public function getValue() {
+    public function value() {
         return $this->value;
     }
 
@@ -102,7 +102,7 @@ class ValueObject implements ValueObjectInterface {
      * @return string
      */
     public function __toString(): string {
-        return (string)$this->getValue();
+        return (string)$this->value();
     }
 
 

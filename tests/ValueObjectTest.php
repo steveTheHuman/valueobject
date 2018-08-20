@@ -105,7 +105,7 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
      */
     public function testInstance($value) {
         $object = ValueObject::instance($value);
-        self::assertEquals($value, $object->getValue());
+        self::assertEquals($value, $object->value());
     }
 
     /**
@@ -127,7 +127,7 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
      */
     public function testExtendedInstance($value) {
         $object = ValueObjectExample::instance($value);
-        self::assertEquals($value, $object->getValue());
+        self::assertEquals($value, $object->value());
     }
 
     /**

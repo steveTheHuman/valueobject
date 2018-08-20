@@ -34,6 +34,6 @@ interface ValueObjectInterface {
      * Gets the value of the object
      * @return mixed
      */
-    public function getValue();
+    public function value();
 
 }

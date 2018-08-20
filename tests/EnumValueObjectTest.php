@@ -55,7 +55,7 @@ class EnumValueObjectTest extends \PHPUnit\Framework\TestCase {
      */
     public function testInstance($value) {
         $object = EnumValueObjectExample::instance($value);
-        self::assertEquals($value, $object->getValue());
+        self::assertEquals($value, $object->value());
     }
 
     /**
