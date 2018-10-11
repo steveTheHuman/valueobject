@@ -20,6 +20,7 @@ use YomY\ValueObject\ValueObject;
 require_once 'helper/ValueObjectExample.php';
 require_once 'helper/ValueObjectExampleLevel2.php';
 require_once 'helper/ValueObjectExampleLevel3.php';
+require_once 'helper/ValueObjectExampleIsolated.php';
 
 class ValueObjectTest extends \PHPUnit\Framework\TestCase {
 
@@ -220,6 +221,26 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
         $object2 = ValueObjectExampleLevel3::instance(1);
         self::assertNotSame($object1, $object2);
         self::assertNotEquals($object1, $object2);
+    }
+
+    /**
+     * Tests with reflection if internal storage is isolated on a value object
+     * @throws \ReflectionException
+     */
+    public function testIsolatedStorage() {
+        $object1 = ValueObjectExample::instance(1);
+        $object2 = ValueObjectExampleIsolated::instance(1);
+        $object1Reflection = new \ReflectionClass($object1);
+        $object1InstancesProperty = $object1Reflection->getProperty('instances');
+        $object1InstancesProperty->setAccessible(true);
+        $object1StorageValue = $object1InstancesProperty->getValue();
+        $object2Reflection = new \ReflectionClass($object2);
+        $object2InstancesProperty = $object2Reflection->getProperty('instances');
+        $object2InstancesProperty->setAccessible(true);
+        $object2StorageValue = $object2InstancesProperty->getValue();
+        self::assertNotEquals($object1StorageValue, $object2StorageValue);
+        self::assertCount(1, $object1StorageValue);
+        self::assertCount(1, $object2StorageValue);
     }
 
     /**
