@@ -283,5 +283,13 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
         clone $object;
     }
 
+    /**
+     * @expectedException \BadFunctionCallException
+     */
+    public function testUnserializeFail() {
+        $object = ValueObject::instance(1);
+        $serialized = \serialize($object);
+        \unserialize($serialized);
+    }
 
 }

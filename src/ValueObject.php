@@ -140,4 +140,13 @@ class ValueObject implements ValueObjectInterface {
         throw new \BadFunctionCallException('Cloning not allowed');
     }
 
+    /**
+     * Prevents mutability
+     *
+     * @throws \BadFunctionCallException
+     */
+    public function __wakeup() {
+        throw new \BadFunctionCallException('Wakeup not allowed');
+    }
+
 }
