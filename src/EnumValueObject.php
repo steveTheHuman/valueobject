@@ -48,7 +48,7 @@ abstract class EnumValueObject extends ValueObject {
      * @return string|false
      */
     protected static function getKey($value) {
-        return array_search($value, static::getAvailableValues(), false);
+        return array_search($value, static::getAvailableValues(), true);
     }
 
     /**

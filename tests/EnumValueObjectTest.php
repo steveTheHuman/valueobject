@@ -108,4 +108,13 @@ class EnumValueObjectTest extends \PHPUnit\Framework\TestCase {
         self::assertEquals($expectedValues, $values);
     }
 
+    /**
+     * Tests that no instance of wrong type of value can be created
+     *
+     * @expectedException \InvalidArgumentException
+     */
+    public function testWrongTypeInstance() {
+        EnumValueObjectExample::instance(2);
+    }
+
 }
