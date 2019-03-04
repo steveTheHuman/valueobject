@@ -13,15 +13,6 @@
  */
 declare(strict_types=1);
 
-namespace YomY\ValueObject\Tests;
+namespace YomY\ValueObject\Tests\Helper;
 
-use YomY\ValueObject\ValueObjectInterface;
-
-class ValueObjectExampleIsolated extends ValueObjectExample {
-
-    /**
-     * @var ValueObjectInterface[]
-     */
-    protected static $instances;
-
-}
+class ValueObjectExampleLevel2 extends ValueObjectExample {}

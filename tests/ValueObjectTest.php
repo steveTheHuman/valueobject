@@ -15,12 +15,11 @@ declare(strict_types=1);
 
 namespace YomY\ValueObject\Tests;
 
+use YomY\ValueObject\Tests\Helper\ValueObjectExample;
+use YomY\ValueObject\Tests\Helper\ValueObjectExampleIsolated;
+use YomY\ValueObject\Tests\Helper\ValueObjectExampleLevel2;
+use YomY\ValueObject\Tests\Helper\ValueObjectExampleLevel3;
 use YomY\ValueObject\ValueObject;
-
-require_once 'helper/ValueObjectExample.php';
-require_once 'helper/ValueObjectExampleLevel2.php';
-require_once 'helper/ValueObjectExampleLevel3.php';
-require_once 'helper/ValueObjectExampleIsolated.php';
 
 class ValueObjectTest extends \PHPUnit\Framework\TestCase {
 

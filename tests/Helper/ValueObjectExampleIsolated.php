@@ -13,8 +13,15 @@
  */
 declare(strict_types=1);
 
-namespace YomY\ValueObject\Tests;
+namespace YomY\ValueObject\Tests\Helper;
 
-use YomY\ValueObject\PositiveIntValueObject;
+use YomY\ValueObject\ValueObjectInterface;
 
-class PositiveIntValueObjectExample extends PositiveIntValueObject {}
+class ValueObjectExampleIsolated extends ValueObjectExample {
+
+    /**
+     * @var ValueObjectInterface[]
+     */
+    protected static $instances;
+
+}

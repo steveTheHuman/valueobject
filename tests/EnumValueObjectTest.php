@@ -15,10 +15,8 @@ declare(strict_types=1);
 
 namespace YomY\ValueObject\Tests;
 
+use YomY\ValueObject\Tests\Helper\EnumValueObjectExample;
 use YomY\ValueObject\ValueObject;
-
-require_once 'helper/EnumValueObjectExample.php';
-require_once 'helper/EnumValueObjectExample2.php';
 
 class EnumValueObjectTest extends \PHPUnit\Framework\TestCase {
 

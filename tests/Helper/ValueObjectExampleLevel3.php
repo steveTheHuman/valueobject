@@ -13,8 +13,6 @@
  */
 declare(strict_types=1);
 
-namespace YomY\ValueObject\Tests;
+namespace YomY\ValueObject\Tests\Helper;
 
-require_once 'ValueObjectExample.php';
-
-class ValueObjectExampleLevel2 extends ValueObjectExample {}
+class ValueObjectExampleLevel3 extends ValueObjectExampleLevel2 {}

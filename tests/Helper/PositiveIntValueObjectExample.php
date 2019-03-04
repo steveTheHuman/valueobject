@@ -13,16 +13,8 @@
  */
 declare(strict_types=1);
 
-namespace YomY\ValueObject\Tests;
+namespace YomY\ValueObject\Tests\Helper;
 
-use YomY\ValueObject\EnumValueObject;
+use YomY\ValueObject\PositiveIntValueObject;
 
-/**
- * @method static ENUM3
- */
-class EnumValueObjectExample extends EnumValueObject {
-    const ENUM1 = 1;
-    const ENUM2 = '2';
-    const ENUM3 = 'value3';
-    const ENUM4 = '1';
-}
+class PositiveIntValueObjectExample extends PositiveIntValueObject {}

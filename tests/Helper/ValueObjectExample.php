@@ -13,13 +13,8 @@
  */
 declare(strict_types=1);
 
-namespace YomY\ValueObject\Tests;
+namespace YomY\ValueObject\Tests\Helper;
 
-use YomY\ValueObject\EnumValueObject;
+use YomY\ValueObject\ValueObject;
 
-class EnumValueObjectExample2 extends EnumValueObject {
-    const ENUM1 = 1;
-    const ENUM2 = '2';
-    const ENUM3 = 'value3';
-    const ENUM4 = '1';
-}
+class ValueObjectExample extends ValueObject {}

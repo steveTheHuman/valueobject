@@ -16,9 +16,8 @@ declare(strict_types=1);
 namespace YomY\ValueObject\Tests;
 
 use YomY\ValueObject\PositiveIntValueObject;
+use YomY\ValueObject\Tests\Helper\PositiveIntValueObjectExample;
 use YomY\ValueObject\ValueObject;
-
-require_once 'helper/PositiveIntValueObjectExample.php';
 
 class PositiveIntValueObjectTest extends \PHPUnit\Framework\TestCase {
 

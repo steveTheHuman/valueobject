@@ -13,8 +13,13 @@
  */
 declare(strict_types=1);
 
-namespace YomY\ValueObject\Tests;
+namespace YomY\ValueObject\Tests\Helper;
 
-require_once 'ValueObjectExampleLevel2.php';
+use YomY\ValueObject\EnumValueObject;
 
-class ValueObjectExampleLevel3 extends ValueObjectExampleLevel2 {}
+class EnumValueObjectExample2 extends EnumValueObject {
+    const ENUM1 = 1;
+    const ENUM2 = '2';
+    const ENUM3 = 'value3';
+    const ENUM4 = '1';
+}
