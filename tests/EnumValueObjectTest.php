@@ -115,4 +115,19 @@ class EnumValueObjectTest extends \PHPUnit\Framework\TestCase {
         EnumValueObjectExample::instance(2);
     }
 
+    /**
+     * Tests array contain
+     */
+    public function testInArray() {
+        $array = [EnumValueObjectExample::ENUM1(), EnumValueObjectExample::ENUM3()];
+        self::assertContains(EnumValueObjectExample::ENUM1(), $array, '', false, true, true);
+        self::assertNotContains(EnumValueObjectExample::ENUM2(), $array, '', false, true, true);
+        self::assertContains(EnumValueObjectExample::ENUM3(), $array, '', false, true, true);
+        self::assertNotContains(EnumValueObjectExample::ENUM4(), $array, '', false, true, true);
+        self::assertContains(EnumValueObjectExample::ENUM1(), $array, '', false, false, false);
+        self::assertNotContains(EnumValueObjectExample::ENUM2(), $array, '', false, false, false);
+        self::assertContains(EnumValueObjectExample::ENUM3(), $array, '', false, false, false);
+        self::assertNotContains(EnumValueObjectExample::ENUM4(), $array, '', false, false, false);
+    }
+
 }

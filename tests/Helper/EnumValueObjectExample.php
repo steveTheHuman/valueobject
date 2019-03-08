@@ -18,7 +18,10 @@ namespace YomY\ValueObject\Tests\Helper;
 use YomY\ValueObject\EnumValueObject;
 
 /**
+ * @method static ENUM1
+ * @method static ENUM2
  * @method static ENUM3
+ * @method static ENUM4
  */
 class EnumValueObjectExample extends EnumValueObject {
     const ENUM1 = 1;
