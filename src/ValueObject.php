@@ -99,6 +99,19 @@ class ValueObject implements ValueObjectInterface {
     }
 
     /**
+     * @param ValueObjectInterface $valueObject
+     * @return bool
+     */
+    public function equals(ValueObjectInterface $valueObject): bool {
+        if (\in_array(WeakValueObjectTrait::class, \class_uses(static::class), true)) {
+            $result = static::class === \get_class($valueObject) && $this->value() === $valueObject->value();
+        } else {
+            $result = $this === $valueObject;
+        }
+        return $result;
+    }
+
+    /**
      * @return string
      */
     public function __toString(): string {

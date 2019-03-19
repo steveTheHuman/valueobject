@@ -19,6 +19,7 @@ use YomY\ValueObject\Tests\Helper\ValueObjectExample;
 use YomY\ValueObject\Tests\Helper\ValueObjectExampleIsolated;
 use YomY\ValueObject\Tests\Helper\ValueObjectExampleLevel2;
 use YomY\ValueObject\Tests\Helper\ValueObjectExampleLevel3;
+use YomY\ValueObject\Tests\Helper\WeakValueObjectExample;
 use YomY\ValueObject\ValueObject;
 
 class ValueObjectTest extends \PHPUnit\Framework\TestCase {
@@ -27,6 +28,13 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
      * @throws \ReflectionException
      */
     public function setUp() {
+        $this->resetValueObjectInstances();
+    }
+
+    /**
+     * @throws \ReflectionException
+     */
+    private function resetValueObjectInstances() {
         $valueObject = ValueObject::instance(null);
         $reflection = new \ReflectionClass($valueObject);
         $instancesProperty = $reflection->getProperty('instances');
@@ -151,6 +159,8 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
         $object1 = ValueObject::instance($value);
         $object2 = ValueObject::instance($value);
         self::assertSame($object1, $object2);
+        self::assertTrue($object1->equals($object2));
+        self::assertTrue($object2->equals($object1));
     }
 
     /**
@@ -165,6 +175,8 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
         $object2 = ValueObject::instance($value2);
         self::assertNotSame($object1, $object2);
         self::assertNotEquals($object1, $object2);
+        self::assertFalse($object1->equals($object2));
+        self::assertFalse($object2->equals($object1));
     }
 
     /**
@@ -175,6 +187,8 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
         $object2 = ValueObjectExample::instance(1);
         self::assertNotSame($object1, $object2);
         self::assertNotEquals($object1, $object2);
+        self::assertFalse($object1->equals($object2));
+        self::assertFalse($object2->equals($object1));
     }
 
 
@@ -190,6 +204,8 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
         $object2 = ValueObjectExample::instance($value2);
         self::assertNotSame($object1, $object2);
         self::assertNotEquals($object1, $object2);
+        self::assertFalse($object1->equals($object2));
+        self::assertFalse($object2->equals($object1));
     }
 
     /**
@@ -200,6 +216,8 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
         $object2 = ValueObjectExampleLevel2::instance(1);
         self::assertNotSame($object1, $object2);
         self::assertNotEquals($object1, $object2);
+        self::assertFalse($object1->equals($object2));
+        self::assertFalse($object2->equals($object1));
     }
 
     /**
@@ -210,6 +228,8 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
         $object2 = ValueObjectExampleLevel3::instance(1);
         self::assertNotSame($object1, $object2);
         self::assertNotEquals($object1, $object2);
+        self::assertFalse($object1->equals($object2));
+        self::assertFalse($object2->equals($object1));
     }
 
     /**
@@ -220,6 +240,48 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
         $object2 = ValueObjectExampleLevel3::instance(1);
         self::assertNotSame($object1, $object2);
         self::assertNotEquals($object1, $object2);
+        self::assertFalse($object1->equals($object2));
+        self::assertFalse($object2->equals($object1));
+    }
+
+    /**
+     * Tests that if factory is reset the objects of the same value are not the same
+     * @throws \ReflectionException
+     */
+    public function testObjectsCompareWhenInternallyReset() {
+        $object1 = ValueObject::instance(1);
+        $this->resetValueObjectInstances();
+        $object2 = ValueObject::instance(1);
+        self::assertNotSame($object1, $object2);
+        self::assertEquals($object1, $object2);
+        self::assertFalse($object1->equals($object2));
+        self::assertFalse($object2->equals($object1));
+    }
+
+    /**
+     * Tests that if factory is reset the weak objects of the same value are the same with internal compare
+     * @throws \ReflectionException
+     */
+    public function testWeakObjectsCompareWhenInternallyReset() {
+        $object1 = WeakValueObjectExample::instance(1);
+        $this->resetValueObjectInstances();
+        $object2 = WeakValueObjectExample::instance(1);
+        self::assertNotSame($object1, $object2);
+        self::assertEquals($object1, $object2);
+        self::assertTrue($object1->equals($object2));
+        self::assertTrue($object2->equals($object1));
+    }
+
+    /**
+     * Tests comparing weak and non weak value objects with the same value
+     */
+    public function testWeakValueObjectCompareToNonWeakValueObjectWithSameValue() {
+        $object1 = WeakValueObjectExample::instance(1);
+        $object2 = ValueObject::instance(1);
+        self::assertNotSame($object1, $object2);
+        self::assertNotEquals($object1, $object2);
+        self::assertFalse($object1->equals($object2));
+        self::assertFalse($object2->equals($object1));
     }
 
     /**
@@ -289,6 +351,16 @@ class ValueObjectTest extends \PHPUnit\Framework\TestCase {
         $object = ValueObject::instance(1);
         $serialized = \serialize($object);
         \unserialize($serialized);
+    }
+
+    /**
+     * Test that unserialize works on weak value object
+     */
+    public function testWeakObjectUnserializePass() {
+        $object = WeakValueObjectExample::instance(1);
+        $serialized = \serialize($object);
+        $unserialized = \unserialize($serialized);
+        self::assertEquals($object, $unserialized);
     }
 
 }

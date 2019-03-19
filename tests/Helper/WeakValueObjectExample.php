@@ -13,36 +13,11 @@
  */
 declare(strict_types=1);
 
-namespace YomY\ValueObject;
+namespace YomY\ValueObject\Tests\Helper;
 
-/**
- * Interface ValueObjectInterface
- *
- * @package YomY\ValueObject
- */
-interface ValueObjectInterface {
+use YomY\ValueObject\ValueObject;
+use YomY\ValueObject\WeakValueObjectTrait;
 
-    /**
-     * Generates an instance of the ValueObject
-     *
-     * @param mixed $value
-     * @return ValueObjectInterface
-     */
-    public static function instance($value): ValueObjectInterface;
-
-    /**
-     * Gets the value of the object
-     *
-     * @return mixed
-     */
-    public function value();
-
-    /**
-     * Compares to another ValueObject
-     *
-     * @param ValueObjectInterface $valueObject
-     * @return bool
-     */
-    public function equals(ValueObjectInterface $valueObject): bool;
-
+class WeakValueObjectExample extends ValueObject {
+    use WeakValueObjectTrait;
 }

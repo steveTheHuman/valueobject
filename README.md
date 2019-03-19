@@ -60,6 +60,34 @@ $object6 = ExtendedValueObject::instance(false);
 //All of the above are different
 ```
 
+Instead of a strong (===) comparison operator,
+you could also use the equals() method
+```php
+$object1 = ValueObject::instance(1);
+$object2 = ValueObject::instance(1);
+$same = $object1->equals($object2); //true
+```
+
+Generally, unserialize of a value object is prohibited, 
+as this would break the ability to compare objects by reference.
+However, you might have a case you don't care about strict comparison,
+and need to unserialize the object.
+You can add a WeakValueObjectTrait usage to your custom object, which will
+allow unserializing it, and also compare objects by the values instead of reference
+when using equals() method
+```php
+class MyWeakObject extends ValueObject {
+    use WeakValueObjectTrait;
+}
+...
+$weakObject1 = MyWeakObject::instance(1);
+$serializedWeakObject = serialize($weakObject1);
+$weakObject2 = unserialize($serializedWeakObject);
+//These two objects are "equal" but not the same
+$weakObject1->equals($weakObject2); //true
+//On regular value objects this would be false
+```
+
 ## Examples of Enum value object
 
 Creating an enum object

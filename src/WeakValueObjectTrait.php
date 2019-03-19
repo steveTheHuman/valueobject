@@ -16,33 +16,19 @@ declare(strict_types=1);
 namespace YomY\ValueObject;
 
 /**
- * Interface ValueObjectInterface
- *
- * @package YomY\ValueObject
+ * Trait WeakValueObjectTrait
  */
-interface ValueObjectInterface {
+trait WeakValueObjectTrait {
 
     /**
-     * Generates an instance of the ValueObject
-     *
-     * @param mixed $value
-     * @return ValueObjectInterface
+     * Wakeup magic method
      */
-    public static function instance($value): ValueObjectInterface;
-
-    /**
-     * Gets the value of the object
-     *
-     * @return mixed
-     */
-    public function value();
-
-    /**
-     * Compares to another ValueObject
-     *
-     * @param ValueObjectInterface $valueObject
-     * @return bool
-     */
-    public function equals(ValueObjectInterface $valueObject): bool;
+    public function __wakeup() {
+        //Allows wakeup of custom value objects.
+        //Intended usage is for testing purposes,
+        //as ValueObjects should remain immutable
+        //and instanced only trough factory to preserve
+        //the strict comparison with ===
+    }
 
 }
